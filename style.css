@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+.calculator-container,
+.display-container,
+.button-container,
+.top-number-container,
+.bottom-number-container{
+    border: 1px solid red;
+}
