@@ -6,6 +6,31 @@
 .display-container,
 .button-container,
 .top-number-container,
-.bottom-number-container{
+.bottom-number-container,
+.operator-container{
     border: 1px solid red;
+}
+
+.calculator-container,
+.button-container,
+.operator-container,
+.top-number-container,
+.top-number-operator-container,
+.bottom-number-container {
+    display: flex;
+}
+
+.calculator-container, 
+.operator-container,
+.top-number-container,
+.top-number-operator-container {
+    flex-direction: column;
+}
+
+.calculator-container {
+    align-items: center;
+}
+
+#num-0 {
+    flex-grow: 2;
 }
