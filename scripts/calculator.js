@@ -15,3 +15,20 @@ function operate(operator, a, b) {
             return divide(a,b);
     }
 }
+
+
+
+
+
+  //\\         //\\
+ ////\\       //\\\\
+//\\//\\ DOM //\\//\\
+const btnSize = 64;
+console.log(btnSize);
+
+const allButtons = Array.from(document.querySelectorAll('.btn'));
+// console.log(allButtons);
+allButtons.forEach(button => {
+    button.style.width = `${btnSize}px`;
+    button.style.height = `${btnSize}px`;
+})
