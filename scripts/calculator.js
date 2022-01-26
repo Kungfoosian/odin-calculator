@@ -16,6 +16,11 @@ function operate(operator, a, b) {
     }
 }
 
+function resetCalculator() {
+    clearNumber();
+    clearOperator();
+}
+
 function checkIfOperator(input) {
     switch(input) {
         case '-':
@@ -84,7 +89,13 @@ allButtons.forEach(button => {
 document.addEventListener('click', e => {
     let currentInput = e.target.value;
 
-    if(checkIfNumberOrPeriod(currentInput)) {
+    if (currentInput === 'clear') {
+        resetCalculator();
+    }
+    else if(currentInput === '=') {
+        //Do some math
+    }
+    else if(checkIfNumberOrPeriod(currentInput)) {
         if(currentOperator !== '') {
             equation.push(currentOperator);
             clearOperator();
