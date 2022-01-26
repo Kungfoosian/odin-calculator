@@ -28,6 +28,10 @@ function checkIfOperator(input) {
     return false;
 }
 
+function updateOperator(input) {
+    currentOperator = input;
+}
+
 function clearOperator(){
     currentOperator = '';
 }
@@ -40,6 +44,16 @@ function checkIfNumberOrPeriod(input) {
 
 function clearNumber() {
     currentNumber = '';
+}
+
+function updateNumber(input) {
+    if(currentNumber.includes('.')) {
+        return;
+    }
+
+    // input is a number or a period that doesn't already exist
+    currentNumber += input;
+    
 }
 
 function getButtonPressed(event) {
@@ -69,17 +83,21 @@ allButtons.forEach(button => {
 
 document.addEventListener('click', e => {
     let currentInput = e.target.value;
+
     if(checkIfNumberOrPeriod(currentInput)) {
         if(currentOperator !== '') {
             equation.push(currentOperator);
             clearOperator();
         }
 
-        if(currentNumber.includes('.')) {
-            return;
+        updateNumber(currentInput);
+    }
+    else if(checkIfOperator(currentInput)){
+        if(currentNumber !== ''){
+            equation.push(parseFloat(currentNumber));
+            clearNumber();
         }
-        else { // input is a number or a period that doesn't already exist
-            currentNumber += currentInput;
-        }
+
+        updateOperator(currentInput);
     }
 })
