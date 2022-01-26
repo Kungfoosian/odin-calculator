@@ -64,3 +64,11 @@ body {
   font-size: 16px;
   flex:1;
 }
+
+.btn:hover {
+    background-color: #64b166;
+}
+
+.btn:active {
+    background-color: #b0e2b1;
+  }
