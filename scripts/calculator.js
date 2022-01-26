@@ -42,7 +42,7 @@ function clearOperator(){
 }
 
 function checkIfNumberOrPeriod(input) {
-    if(input === '.' || typeof(parseInt(input)) === 'number') return true;
+    if(input === '.' || !isNaN(input)) return true;
 
     return false;
 }
@@ -94,6 +94,32 @@ document.addEventListener('click', e => {
     }
     else if(currentInput === '=') {
         //Do some math
+        equation.push(parseFloat(currentNumber));
+        let result = 0;
+        let a = null;
+        let b = null;
+        
+        for (let i = 0; i < equation.length; i++) {
+            let currentElement = equation[i];
+
+            if(typeof(currentElement) === 'number') {
+                if(a === null) a = currentElement;
+                else if(b === null) b = currentElement;
+                else {
+                    result += operate(currentOperator,a,b);
+                    clearOperator();
+                    a = null;
+                    b = null;
+                }
+            }
+            else {
+                updateOperator(currentElement);
+            }
+        }
+
+        console.log(result);
+
+        resetCalculator();
     }
     else if(checkIfNumberOrPeriod(currentInput)) {
         if(currentOperator !== '') {
