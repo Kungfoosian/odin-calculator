@@ -19,6 +19,7 @@ function operate(operator, a, b) {
 function resetCalculator() {
     clearNumber();
     clearOperator();
+    equation = [];
 }
 
 function checkIfOperator(input) {
@@ -97,28 +98,53 @@ document.addEventListener('click', e => {
         equation.push(parseFloat(currentNumber));
         let result = 0;
         let a = null;
-        let b = null;
         
         for (let i = 0; i < equation.length; i++) {
             let currentElement = equation[i];
 
-            if(typeof(currentElement) === 'number') {
-                if(a === null) a = currentElement;
-                else if(b === null) b = currentElement;
-                else {
-                    result += operate(currentOperator,a,b);
+            // if(typeof(currentElement) === 'number') {
+            //     if(a === null) a = currentElement;
+            //     else if(b === null) {
+            //         b = currentElement;
+
+            //         result += operate(currentOperator,a,b);
+            //         clearOperator();
+            //         a = null;
+            //         b = null;
+            //     }
+
+            // }
+            // else {
+            //     updateOperator(currentElement);
+            // }
+
+            if(i === 0) {
+                a = currentElement;
+                result += operate('+',a,result);
+
+                clearOperator();
+                a = null;
+            }
+            else if(typeof(currentElement) === 'number') {
+                // if(a === null) a = currentElement;
+                if(a === null) {
+                    a = currentElement;
+
+                    result = operate(currentOperator,result,a);
                     clearOperator();
                     a = null;
-                    b = null;
+
                 }
             }
             else {
                 updateOperator(currentElement);
             }
+
+
         }
 
         console.log(result);
-
+        result = 0;
         resetCalculator();
     }
     else if(checkIfNumberOrPeriod(currentInput)) {
