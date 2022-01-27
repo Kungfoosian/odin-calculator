@@ -57,15 +57,12 @@ function updateNumber(input) {
         return;
     }
 
-    // input is a number or a period that doesn't already exist
     currentNumber += input;
-    
+    // displayNumber();
 }
 
-function getButtonPressed(event) {
-    // console.log(event.target.value);
-    // if(event.target.value !==)
-
+function displayNumber(input){
+    display.innerText = input;
 }
 
 
@@ -76,6 +73,8 @@ function getButtonPressed(event) {
 const btnSize = 64; // Edit later?
 
 const allButtons = Array.from(document.querySelectorAll('.btn'));
+const display = document.querySelector('.display');
+display.innerText = '';
 let num1, num2;
 let currentOperator='';
 let currentNumber='';
@@ -92,9 +91,10 @@ document.addEventListener('click', e => {
 
     if (currentInput === 'clear') {
         resetCalculator();
+        display.innerText = '';
     }
     else if(currentInput === '=') {
-        //Do some math
+
         equation.push(parseFloat(currentNumber));
         let result = 0;
         let a = null;
@@ -102,21 +102,6 @@ document.addEventListener('click', e => {
         for (let i = 0; i < equation.length; i++) {
             let currentElement = equation[i];
 
-            // if(typeof(currentElement) === 'number') {
-            //     if(a === null) a = currentElement;
-            //     else if(b === null) {
-            //         b = currentElement;
-
-            //         result += operate(currentOperator,a,b);
-            //         clearOperator();
-            //         a = null;
-            //         b = null;
-            //     }
-
-            // }
-            // else {
-            //     updateOperator(currentElement);
-            // }
 
             if(i === 0) {
                 a = currentElement;
@@ -143,7 +128,7 @@ document.addEventListener('click', e => {
 
         }
 
-        console.log(result);
+        displayNumber(result);
         result = 0;
         resetCalculator();
     }
@@ -154,6 +139,7 @@ document.addEventListener('click', e => {
         }
 
         updateNumber(currentInput);
+        displayNumber(currentNumber);
     }
     else if(checkIfOperator(currentInput)){
         if(currentNumber !== ''){

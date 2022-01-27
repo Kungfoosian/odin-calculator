@@ -37,11 +37,12 @@ body {
     width: 100%;
     text-align: right;
     background-color: rgb(99, 98, 98);
+    padding: 20px;
 }
 
 .display {
     margin:0;
-    padding: 20px;
+    height:20px;
     color: white;
 }
 
